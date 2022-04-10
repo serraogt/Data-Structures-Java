@@ -1,0 +1,167 @@
+public class BinaryNode {
+
+    protected int element; // The data in the node
+        protected BinaryNode left; // Left child
+        protected BinaryNode right; // Right child
+
+        public BinaryNode(int element)
+        {
+            this.element = element;
+            this.left = null;
+            this.right = null;
+        }
+
+        public BinaryNode(int element, BinaryNode left, BinaryNode right) {
+            this.element = element;
+            this.left = left;
+            this.right = right;
+        }
+
+}
+
+
+
+public class BST {
+    private BinaryNode root;
+
+    public BST()
+    {
+        setRoot(null);
+    }
+
+    public BinaryNode getRoot() {
+        return root;
+    }
+
+    public void setRoot(BinaryNode root) {
+        this.root = root;
+    }
+
+    // TODO: Find the depth of a BST
+    public int findDepth(BinaryNode node) {
+        int depthByRight = 0;
+        int depthByLeft = 0;
+        if (node == null) {
+            System.out.println("depth is 0");
+            return -1;
+        }
+
+        if (node != null) {
+
+            depthByLeft = findDepth(node.left);
+            return (depthByLeft+1);
+        }
+
+        if (node != null) {
+
+            depthByRight = findDepth(node.right);
+            return (depthByRight+1);
+        }
+        if (depthByLeft>= depthByRight){
+            return depthByLeft;
+        }
+        else
+        return depthByRight;
+    }
+
+    // TODO: Insert an element to the BST
+    public void insert(int element) {
+        BinaryNode newNode = new BinaryNode(element);
+        if (root == null) {
+            root = newNode;
+        } else {
+            BinaryNode current = root;
+            BinaryNode base; //which may have left or right child
+
+            while (true) {
+                base = current;
+
+                if (element < current.element) {
+
+                    current = current.left;
+                    if (current == null) {
+                        //means no more left
+
+                        base.left = newNode;
+                        return;
+
+                    }
+
+                } else { //vice versa
+                    current = current.right;
+
+                    if (current == null) {
+
+                        base.right = newNode;
+                        return;
+
+                    }
+
+                }
+
+            }
+        }
+
+    }
+
+    // TODO: Traverse the BST inorder and print it
+    public void printTreeInorder(BinaryNode node)
+    {
+        if (node != null) {
+
+            printTreeInorder(node.left);
+            System.out.println(node);
+
+                    printTreeInorder(node.right);
+                    System.out.println(node.element);
+
+        }
+
+            }
+
+
+        }
+
+
+
+
+
+public class Main {
+    public static void main(String[] args)
+    {
+        BST defaultBST = new BST();
+
+        BinaryNode root= new BinaryNode(5);
+
+        root.left= new BinaryNode(3);
+        root.right= new BinaryNode(7);
+        root.left.right= new BinaryNode(4);
+        root.right.right= new BinaryNode(8);
+        root.right.left= new BinaryNode(6);
+        root.left.left= new BinaryNode(2);
+
+        defaultBST.findDepth(root);
+
+        BST autoBST = new BST();
+
+        //I called it auto because it inserts automatically by method (not manually)
+        autoBST.insert(5);
+        autoBST.insert(3);
+        autoBST.insert(7);
+        autoBST.insert(4);
+        autoBST.insert(8);
+        autoBST.insert(6);
+        autoBST.insert(2);
+
+        autoBST.findDepth(root);
+
+        // TODO: Use printTreeInorder() method to print your BST
+
+        defaultBST.printTreeInorder(root);
+        autoBST.printTreeInorder(root);
+
+    }
+
+}
+
+
