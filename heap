@@ -1,0 +1,226 @@
+public class Heap {
+    private int currentSize;
+    private int[] heapArray;
+
+
+    // Constructors
+    public Heap()
+    {
+        setCurrentSize(0);
+        heapArray = new int[1];
+    }
+
+
+    public Heap(int capacity)
+    {
+        setCurrentSize(0);
+        heapArray = new int[capacity + 1];
+    }
+
+    // Heap Operations
+    public int[] buildHeap(int[] array)
+    {
+        // Builds the heap from an array that you have provided
+        currentSize = array.length;
+        heapArray = new int[(currentSize + 1)];
+
+        for (int i = 0; i < array.length; i++) {
+            heapArray[i + 1] = array[i];
+        }
+
+        for (int i = currentSize / 2; i > 0; i--)
+        {
+            percolateDown(i);
+        }
+
+        return heapArray;
+    }
+
+    private void percolateDown(int hole)
+    {
+        // Organizes the elements of the heap and percolate down the elements for not violating heap properties
+        int child;
+        int tmp = heapArray[hole];
+
+        for( ; hole * 2 <= currentSize; hole = child)
+        {
+            child = hole * 2;
+
+            if(child != currentSize && Integer.compare(heapArray[child + 1], heapArray[child]) < 0)
+            {
+                child++;
+            }
+
+            if(Integer.compare(heapArray[child], tmp) < 0)
+            {
+                heapArray[hole] = heapArray[child];
+            }
+            else
+                break;
+        }
+
+        heapArray[hole] = tmp;
+    }
+
+      public int getMinValue()
+    {
+
+        System.out.println("since it is min heap, the root has the least value");
+        System.out.println("which is: " + heapArray[1]);
+       return heapArray[1];
+    }
+
+    public int getHeight() {
+        // Returns the height of the binary min heap
+        int level = 0;
+
+        for (int i = 1; i < currentSize; i++) {
+            if ((i + 1) % Math.pow(2, level) == 0) {
+                level++;
+            }
+        }
+        return level;
+    }
+
+
+    public void insert(int value)
+    {
+        if (isFull()){
+            enlargeArray(50);
+        }
+
+        percolateUp (value, heapArray[currentSize+1]);
+    }
+
+    public boolean isFull(){
+        if (currentSize==heapArray.length)
+        { return true; }
+        else return false;
+    }
+
+    private void percolateUp(int value, int hole)
+    {
+        //create a hole at where it should be
+        int child;
+        int tmp = heapArray[hole];
+
+        for( hole = heapArray[hole];
+             hole > 1 && tmp < heapArray[ hole / 2 ] ; hole /= 2 )
+        {
+            heapArray[ hole ] = heapArray[ hole / 2 ];
+        }
+
+        heapArray[ hole ] = tmp;
+    }
+
+    public boolean search(int value)
+    {
+        // Searches the heap for if the given value is present or not, returns TRUE if value is present, FALSE otherwise
+
+        // IMPLEMENT THIS METHOD
+        // ...
+         return true;
+    }
+
+    // Helper Methods
+    public boolean isEmpty()
+    {
+        return currentSize == 0;
+    }
+
+    public void makeEmpty()
+    {
+        currentSize = 0;
+    }
+
+    private void enlargeArray(int newSize)
+    {
+        // Enlarges array to the new size
+        int[] old = heapArray;
+        heapArray = new int[newSize];
+
+        for( int i = 1; i < old.length; i++)
+            heapArray[i] = old[i];
+    }
+
+    public void printHeap()
+    {
+        // Prints the heap elements one by one
+        int level = 0;
+
+        for (int i = 1; i < currentSize; i++)
+        {
+            System.out.println(i+ "th element is " +heapArray[i] + " ");
+
+            if ((i + 1) % Math.pow(2, level) == 0) {
+                System.out.println("--------------");
+                level++;
+                System.out.println("it is next level: " + level);
+
+            }
+        }
+
+        System.out.println("\n---------------------------");
+    }
+
+    // Getters and Setters
+    public int getCurrentSize() {
+        return currentSize;
+    }
+
+    public void setCurrentSize(int currentSize) {
+        this.currentSize = currentSize;
+    }
+
+    public int[] getHeapArray() {
+        return heapArray;
+    }
+
+    public void setHeapArray(int[] heapArray) {
+        this.heapArray = heapArray;
+    }
+
+}
+
+
+
+
+
+public class Main {
+    public static void main(String[] args)
+    {
+        int[] arrayA = {25, 35, 10, 15, 150, 64, 48, 105, 149, 148, 130, 22, 67, 56, 43};
+
+
+
+        Heap h1 = new Heap(20);
+
+        h1.buildHeap(arrayA);
+
+
+       /*
+       it would basically look like:
+            for (int j=0;j<=arrayA.length+1;j++){
+            System.out.println((j+1)+"th element is: " + arrayA[j]);
+        } */
+
+        h1.printHeap();
+        h1.getMinValue();
+        h1.getHeight();
+
+
+        h1.insert(45);
+        h1.insert(652);
+
+        h1.printHeap();
+        // Insert random numbers one by one to test whether the insert() method works or not
+        // ...
+        // insert(52);
+
+        // Search a number for if the heap includes it or not
+        // ...
+        // search(52);
+
+    }
+
+}
