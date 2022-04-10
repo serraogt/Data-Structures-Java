@@ -1,0 +1,99 @@
+import java.sql.SQLOutput;
+import java.util.InputMismatchException;
+//hmm mmm
+import java.util.Random;
+//ummm
+import java.util.Scanner;
+public class BlackJack {
+int a=0;
+
+    //ace option is missing
+    //nasıl dil değiştirdiklerini sor acm
+  //  private static Object Random{ }
+
+
+    public static void main(String[] args) {
+
+     //   int deck = 0;
+        BlackJack user1 = new BlackJack();
+        Scanner input = new Scanner(System.in);
+
+      while(true) {
+
+
+          int deck = 0;
+          outer: while(true){
+            System.out.println("press 1 to get your card: ");
+            int cardselect = input.nextInt();
+            while (cardselect == 1) {
+                Random r = new Random();
+                //int deck;
+                int rnd= r.nextInt(13) + 1;
+                deck = deck + rnd ;
+                //randomu bi yazsam
+                System.out.println("Your current card: " + rnd );
+                System.out.println("Your deck: " + deck);
+
+                //if rnd==1 (eighter 1 or 11)
+
+                if (deck == 21) {
+                    System.out.println("CONGRACULATIONS!! YOU WON!");
+                    System.out.println("Play again?");
+                    break outer;
+                    //final-end-exit-terminate
+                }
+                if (deck > 21){
+                    System.out.println("Unfortunately you've exceed limit! :(");
+                    System.out.println("You should've been slowed down");
+                    System.out.println("Game over :'(");
+                    System.out.println("Try again?");
+                    input.next();
+                    break outer;
+
+                }
+
+                else if(deck < 21){
+                System.out.println("The value of cards is not enough");
+                    System.out.println("Please press 2 to withdraw to not to take the risk anymore.");
+                    System.out.println("Or press any integer to keep going.");
+                  /*
+                    //try catch
+                    boolean KeepOnRunning=true;
+                    int temporaryCont;
+                    while(KeepOnRunning=true){
+
+                    }
+                    try{
+
+                        temporaryCont = input.nextInt();
+                    }
+                    catch (InputMismatchException e ) {
+                        System.out.println("Again");
+
+                    }
+                    }
+                    int continues= temporaryCont; */
+                    int continues =input.nextInt();
+                    if (continues==2)
+                    {
+                        System.out.println("We appreciate you made it so far!");
+                        System.out.println("You have collected "+ deck +"points out of 21 and withdrew without greediness");
+                        System.out.println("You have been ranked as WISE ");
+                        System.out.println("Better luck next time WISE GAMER <3");
+                        System.out.println("Press an integer to play again");
+                        input.next();
+                        //hırs, ambition
+                        break outer;
+                    }
+                    else
+                        {
+                                break; } //break 1 more
+                    }
+                break;//while
+                     }
+
+        }
+          System.out.println("love u byee");}
+        }
+}
+//}
