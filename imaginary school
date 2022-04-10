@@ -1,0 +1,70 @@
+public class Students {
+
+    private String name;
+    private int id;
+
+    public Students(String name, int id){}
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+}
+
+
+public class SimpleHash {
+
+    public int capacity;
+    private Students[] hashtable;
+
+    public SimpleHash(){
+        hashtable= new  Students [0];
+    }
+
+    public void put (String key, Students s1 ) {
+        int keyHashed = hashKey(key);
+        if (hashtable [keyHashed] != null){
+            System.out.println("there is already a student with number: "+ keyHashed); }
+
+        else { hashtable[keyHashed]= s1;}
+    }
+
+    public Students get (String key){
+        int keyHashed = hashKey(key);
+        return hashtable[keyHashed];
+    }
+
+    private int hashKey(String key){
+        return key.length() % capacity;
+                //hashtable.length();
+    }
+
+    public void printHash(){
+        for (int i=0; i< hashtable.length ;i++){
+            System.out.println(i);
+        }
+    }
+}
+
+
+public class Main {
+    public static void main (String[] args){
+        SimpleHash simple = new SimpleHash();
+
+        Students serra = new Students("Serra", 655962);
+        simple.put("1", serra);
+        simple.printHash();
+
+    }
+}
+
