@@ -1,0 +1,95 @@
+public class Node {
+    public int value;
+    public Node next;
+}
+
+
+
+public class LinkedList
+{
+    Node head;
+    Node tail;
+    int size;
+
+    public LinkedList()
+    {
+        head = new Node(-1);
+        tail = new Node(-1);
+        head.setNext(tail);
+        tail.setPrev(head);
+        size = 0;
+    }
+
+    public void printList()
+    {
+        int ctr = 0;
+        Node iter = head;
+        while(ctr < size)
+        {
+            iter = iter.getNext();
+            System.out.print(iter.getData() + " ");
+            ctr++;
+        }
+    }
+
+    public void add(int data)
+    {
+
+    }
+
+    public void delete(Node data)
+    {
+
+    }
+
+    public void delete(int index)
+    {
+
+    }
+
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+
+        SinglyLinkedList SLL1 = new SinglyLinkedList();
+        SLL1.createLL(7, 6);
+        System.out.println(SLL1.head.next.value);
+    }
+}
+
+
+
+public class SinglyLinkedList {
+    public Node head;
+    public Node tail;
+    public int size;
+
+
+    public Node createLL(int node0Value, int node1Value) {
+        head = new Node();
+        Node n0 = new Node();
+        Node n1 = new Node();
+        n0.next= n1;
+        n0.value= node0Value;
+        n1.value= node1Value;
+        head= n0;
+        tail=n1;
+        size=2;
+        return head;
+    }
+
+    public void insertNode(int nodeValue, int location){
+        Node nNew = new Node();
+        nNew.value = nodeValue;
+    }
+
+    void addToEnd(int data){
+        Node n = new Node(data);
+    }
+}
+
+
+
+
