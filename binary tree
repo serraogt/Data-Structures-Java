@@ -1,0 +1,226 @@
+class Node {
+
+    int value;
+
+
+    Node left;
+    Node right;
+
+    Node(int value) {
+
+        this.value = value;
+
+    }
+
+    public String toString() {
+
+      //  return "" + value;
+
+
+          return  " this have the value " + value + "\nLeft Child: " + left +
+          "\nRight Child: " + right + "\n";
+
+
+    }
+
+}
+
+
+public class BinaryTree {
+
+    Node root;
+
+    public void addNode(int value) {
+
+        // Create a new Node and initialize it
+
+        Node newNode = new Node(value);
+
+        // If there is no root this becomes root
+
+        if (root == null) {
+
+            root = newNode;
+
+        } else {
+
+            // Set root as the Node we will start
+            // with as we traverse the tree
+
+            Node current = root;
+
+            // Future parent for our new Node
+
+            Node parent;
+
+            while (true) {
+
+                // root is the top parent so we start
+                // there
+
+                parent = current;
+
+                // Check if the new node should go on
+                // the left side of the parent node
+
+                if (value < current.value) {
+
+                    // Switch focus to the left child
+
+                    current = current.left;
+
+                    // If the left child has no children
+
+                    if (current == null) {
+
+                        // then place the new node on the left of it
+
+                        parent.left = newNode;
+                        return; // All Done
+
+                    }
+
+                } else { // If we get here put the node on the right
+
+                    current = current.right;
+
+                    // If the right child has no children
+
+                    if (current == null) {
+
+                        // then place the new node on the right of it
+
+                        parent.right = newNode;
+                        return; // All Done
+
+                    }
+
+                }
+
+            }
+        }
+
+    }
+
+    // All nodes are visited in ascending order
+    // Recursion is used to go to one node and
+    // then go to its child nodes and so forth
+
+    public void inOrderTraverseTree(Node focusNode) {
+
+        if (focusNode != null) {
+
+            // Traverse the left node
+
+            inOrderTraverseTree(focusNode.left);
+
+            // Visit the currently focused on node
+
+            System.out.println(focusNode);
+
+            // Traverse the right node
+
+            inOrderTraverseTree(focusNode.right);
+
+        }
+
+    }
+
+    public void preorderTraverseTree(Node focusNode) {
+
+        if (focusNode != null) {
+
+            System.out.println(focusNode);
+
+            preorderTraverseTree(focusNode.left);
+            preorderTraverseTree(focusNode.right);
+
+        }
+
+    }
+
+    public void postOrderTraverseTree(Node focusNode) {
+
+        if (focusNode != null) {
+
+            postOrderTraverseTree(focusNode.left);
+            postOrderTraverseTree(focusNode.right);
+
+            System.out.println(focusNode);
+
+        }
+
+    }
+
+    public Node findNode(int value) {
+
+        // Start at the top of the tree
+
+        Node focusNode = root;
+
+        // While we haven't found the Node
+        // keep looking
+
+        while (focusNode.value != value) {
+
+            // If we should search to the left
+
+            if (value < focusNode.value) {
+
+                // Shift the focus Node to the left child
+
+                focusNode = focusNode.left;
+
+            } else {
+
+                // Shift the focus Node to the right child
+
+                focusNode = focusNode.right;
+
+            }
+
+            // The node wasn't found
+
+            if (focusNode == null)
+                return null;
+
+        }
+
+        return focusNode;
+
+    }
+}
+
+
+public class Main{
+    public static void main(String[] args) {
+
+        BinaryTree bt = new BinaryTree();
+
+        bt.addNode(50);
+
+        bt.addNode(25);
+
+        bt.addNode(15);
+
+        bt.addNode(30);
+
+        bt.addNode(75);
+
+        bt.addNode(85);
+
+        // Different ways to traverse binary trees
+
+        bt.inOrderTraverseTree(bt.root);
+
+        // theTree.preorderTraverseTree(theTree.root);
+
+        // theTree.postOrderTraverseTree(theTree.root);
+
+        // Find the node with key 75
+
+        // System.out.println("\nNode with the key 75");
+
+        // System.out.println(theTree.findNode(75));
+
+    }}
