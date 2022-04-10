@@ -1,0 +1,71 @@
+public class Stk {
+    int stackArr[];
+    int topOfStack;
+
+    public Stk (int size){
+        this. stackArr= new int [size];
+        topOfStack=-1;
+        System.out.println("created. size:"+size);
+    }
+    public boolean isEmpty(){
+      if(topOfStack==-1){ return true;}
+      else {return false;}
+    }
+
+    public boolean isFull(){
+        if(topOfStack == stackArr.length - 1){
+            //it is full
+            return true;
+        }
+        else {return false;}
+    }
+
+    public void push(int data){
+        if (isFull()){
+            System.out.println("it is full");
+        }
+        else {
+            stackArr[topOfStack+1] = data;
+            topOfStack++;
+            System.out.println(topOfStack+ "th item inserted");
+        }
+    }
+
+    public void pop(){
+        if (isEmpty()){
+            System.out.println("empty");
+        }
+        else {
+            stackArr[topOfStack+1]=0;
+            topOfStack--;
+        }
+    }
+    public void printStack(){
+        int i = topOfStack +1;
+        for(int a= 0 ; a <= stackArr.length ;a++){
+        System.out.println(stackArr[i]);}
+    }
+}
+
+
+
+
+
+
+
+public class Main {
+
+    public static void main(String[] args) {
+    Stk s1 = new Stk(2);
+    boolean result = s1.isFull();
+    boolean result2= s1.isEmpty();
+        System.out.println(result+"and"+ result2);
+
+        s1.push(2);
+        s1.push(7);
+        s1.pop();
+        s1.push(9);
+
+        System.out.println();
+        //s1.printStack();
+}}
