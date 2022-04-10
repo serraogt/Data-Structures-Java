@@ -1,0 +1,93 @@
+public class Node {
+    int value;
+    Node next;
+
+   public Node(int value){
+       this.value=value;
+   }
+
+   public Node(){
+       return;
+   }
+
+}
+
+
+public class LL {
+    Node head;
+    Node tail;
+
+    public LL() {
+        head = null;
+        tail = null;
+       // head=tail;
+    }
+
+    public boolean isFull() {
+        if (head != null)
+        {return true;}
+
+        else {return false;}
+    }
+
+
+    public void addToHead(int value){
+        if ( ! isFull() ){//head==null){
+            Node n1 = new Node(value);
+            head = n1;
+            tail = n1;
+
+        }
+        else {
+            Node n1 = new Node(value);
+
+            n1.next = head;
+            head = n1;
+            /*head =head.next;
+            head= n1; */
+
+        }
+    }
+
+    public void addToTail(int value){
+        if (!isFull()){
+          //  addToHead(value);
+            Node n1 = new Node(value);
+            head = n1;
+            tail = n1;
+
+        }
+        else {
+            Node n1 = new Node(value);
+            tail.next= n1;
+            tail=n1;
+           /* tail.next= new Node();
+            tail=tail.next; */
+        }
+    }
+
+    public void printList(){
+        System.out.println("hi");
+        Node current = new Node();
+        current=head;
+        while (current != null){
+            System.out.println(current.value);
+            current = current.next;
+        }
+    }
+}
+
+
+
+
+public class Main {
+    public static void main(String[] args) {
+
+
+    LL myLL = new LL();
+    myLL.addToTail(3);
+    myLL.addToHead(2);
+    myLL.addToTail(4);
+    myLL.printList();
+}
+}
