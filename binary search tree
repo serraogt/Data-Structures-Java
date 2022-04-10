@@ -1,0 +1,55 @@
+public class BinaryNode {
+    int value;
+    // int height;
+    public BinaryNode left;
+    public BinaryNode right;
+}
+
+
+
+public class BinarySearchTree {
+    BinaryNode root;
+
+    BinarySearchTree(){
+        root = null;
+    }
+
+    private BinaryNode insert(BinaryNode currentNode,int value) {
+        if (currentNode == null) {
+            BinaryNode newNode= new BinaryNode();
+            newNode.value = value;
+            System.out.println("ok");
+           // return currentNode;
+        }
+        // right subtree
+
+        else if (value <= currentNode.value) {
+            currentNode.left = insert(currentNode.left, value);
+            System.out.println("ok");
+        }
+
+        //left subtree
+        else {
+            currentNode.right = insert(currentNode.right, value);
+            System.out.println("ok");
+           // return currentNode;
+        }
+        return currentNode;
+    }
+
+    void insert(int value){
+        insert (root,value);
+    }
+
+    //SEARCH
+
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BinarySearchTree bst = new BinarySearchTree();
+        bst.insert(70);
+        bst.insert(20);
+        bst.insert(17);
+    }
+}
