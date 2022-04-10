@@ -1,0 +1,138 @@
+
+public class Node
+{
+    int data;
+    Node next;
+    Node prev;
+
+    public Node(int data){
+        this.data = data;
+        next = null;
+        prev = null;
+    }
+
+    public int getData(){
+        return data;
+    }
+
+    public Node getNext(){
+        return next;
+    }
+
+    public void setNext(Node next){
+        this.next = next;
+    }
+
+    public Node getPrev(){
+        return prev;
+    }
+
+    public void setPrev(Node prev){
+        this.prev = prev;
+    }
+
+}
+
+
+
+
+public class LinkedList
+{
+    Node head;
+    Node tail;
+    int size;
+
+    public LinkedList()
+    {
+        head = new Node(-1);
+        tail = new Node(-1);
+        head.setNext(tail);
+        tail.setPrev(head);
+        size = 0;
+    }
+
+    public void printList()
+    {
+        Node current = head;
+        while(current != tail)
+        {
+            System.out.println(current.data);
+            current= current.next;
+        }
+    }
+
+    public void add(int data)
+    {
+       Node n = new Node(data);
+       if (head==null){
+           //list is empty
+           head=n;
+           tail=n;
+       }
+       else
+       {
+           tail.next=n;
+           tail =n;
+       }
+
+    }
+
+    public void delete(Node data)
+    {
+
+        //useless bi sallama yaptım
+        for (int index=0; index>=size; index++) {
+            Node temp= new Node(index);
+            //iter=iter.getNext();
+            head.getNext().getData();
+
+            for (int j=0; j>=size; j++) {
+                Node temp2=new Node(j);
+                head.getNext().getData();
+
+                if(temp==temp2){
+                    temp.next=temp.next.next;
+                }
+            }
+            }
+    }
+
+    public void delete(int index)
+    {
+
+    }
+
+}
+
+
+
+import java.util.Scanner;
+public class Main {
+
+    public static void main(String args[])
+    {
+        LinkedList ll = new LinkedList();
+        System.out.println("number?");
+        Scanner input = new Scanner(System.in);
+        byte s=0;
+
+        while ( s != -1){
+            s = input.nextByte();
+        ll.add(s);
+        ll.size++;
+    }
+        ll.printList();
+
+        ll.delete(1) ; //niye 1 bilmiyoru m olmadı
+        /*
+        ll.add(10);
+        ll.add(20);
+        ll.add(30);
+
+        ll.delete(1);
+
+        ll.delete(ll.tail); */
+
+    }
+
+}
