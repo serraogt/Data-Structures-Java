@@ -1,0 +1,31 @@
+import java.lang.reflect.Array;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] array = {1, 32, -6, 17};
+
+        int swap=0;
+
+        for (int firstUnsortedIndex = 1; firstUnsortedIndex< array.length; firstUnsortedIndex++)
+         //baştan sona deneme
+         {
+             int newElement = array[firstUnsortedIndex];
+             int i;
+
+
+             for (i = firstUnsortedIndex; i > 0 && array[i-1]>newElement; i--){
+                 //soldaki sağdan büyükse yer değiştirilecek && sıfır olunca duracak
+                 array[i] = array[i-1];
+                 array[i-1]=newElement;
+                 swap++;
+             }
+         }
+
+        public void print(Array){
+         for (int t=0; t<array.length;t++){
+             System.out.println(array[t]);
+         }
+        System.out.println("swaps: "+swap);}
+    }
+
+}
