@@ -1,0 +1,147 @@
+public class BNode {
+    int value;
+    public BNode left;
+    BNode right;
+
+    public BNode(){
+        BNode current=null;
+    }
+    public BNode(int value) {
+        this.value=value;
+    }
+
+    public BNode getLeft() {
+        return left;
+    }
+
+    public void setLeft(BNode left) {
+        this.left = left;
+    }
+}
+
+
+public class BST {
+    BNode root;
+
+
+    BST(){
+        root =null;
+    }
+
+    private BNode insert(BNode currentNode,int value) {
+        if (currentNode == null) {
+            BNode newNode= new BNode();
+            newNode.value = value;
+            System.out.println("it was null, now ok");
+             return newNode;
+        }
+        // right subtree
+
+        else if (value <= currentNode.value) {
+            currentNode.left = insert(currentNode.left, value);
+            System.out.println("ok");
+        }
+
+        //left subtree
+        else {
+            currentNode.right = insert(currentNode.right, value);
+            System.out.println("ok");
+            return currentNode;
+        }
+        return currentNode;
+    }
+
+    void insert(int value){
+        insert (root,value);
+    }
+
+    boolean isBST(BNode current){
+            if (current == null){
+                System.out.println("truet");
+                return true;}
+
+            if (current.left != null && current.left.value > current.value)
+            {
+                System.out.println("false");
+                return false;}
+
+            if (current.right != null && current.right.value < current.value)
+            {   System.out.println("false");
+                return false;}
+
+            if (!isBST(current.left) || !isBST(current.right))
+                return true;
+
+            return false;
+        }
+
+        public void inOrderTraversal(BNode order){
+
+        if (order == null){
+            System.out.println("it is null");
+            return;
+        }
+       // BNode b1 = new BNode(-1);
+        inOrderTraversal(root);
+        //BNode print =new BNode(root);
+            System.out.println(root.value);
+        }
+
+    static int findMax(BNode node)
+    {
+        BNode b2 = new BNode();
+        if (b2 == null)
+            return 0;
+
+        int max = node.value;
+        int maxL = findMax(node.left);
+        int maxR = findMax(node.right);
+
+        if (maxL > max)
+            max = maxL;
+        if (maxR > max)
+            max = maxR;
+        return max;
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+
+    BST defaultBST = new BST();
+
+    BNode root= new BNode(5);
+
+    root.left= new BNode(3);
+    root.right= new BNode(7);
+    root.left.right= new BNode(4);
+    root.right.right= new BNode(8);
+    root.right.left= new BNode(6);
+    root.left.left= new BNode(2);
+
+       // BNode curr1= new BNode(-1);
+        defaultBST.isBST(root);
+
+
+
+
+    BST autoBST = new BST();
+
+    autoBST.insert(5);
+    autoBST.insert(3);
+    autoBST.insert(7);
+    autoBST.insert(4);
+    autoBST.insert(8);
+    autoBST.insert(6);
+    autoBST.insert(2);
+
+
+        autoBST.isBST(root);
+
+
+        defaultBST.inOrderTraversal(root.left);
+
+
+        autoBST.inOrderTraversal(root.left);
+}}
